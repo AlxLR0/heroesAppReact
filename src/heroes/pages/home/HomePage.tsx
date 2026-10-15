@@ -10,21 +10,24 @@ import { getHeroesByPageAction } from "@/heroes/actions/get-heroes-by-page.actio
 
 
 
+
 export const HomePage = () => {
 
   const [activeTab, setActiveTab] = useState<
   'all'|'favorites'|'heroes'|'villains'
   >('all');
 
-  const {data} = useQuery({
-    queryKey: ['herores'],
+  const {
+    data: heroesResponse,
+    isPending,
+    error,
+  } = useQuery({
+    queryKey: ['heroes'],
     queryFn: ()=> getHeroesByPageAction(),
     staleTime: 1000 * 60 * 5, //5 minutos
   })
 
-    // useEffect(()=>{
-    //   getHeroesByPage().then()
-    // })
+  const heroes = heroesResponse?.heroes ?? []
 
   return (
     <>
@@ -53,7 +56,13 @@ export const HomePage = () => {
 
           <TabsContent value='all'>
               {/* Character Grid - mostrar todos los personajes*/}
-              <HeroGrid/>
+              {isPending ? (
+                <p role="status">Cargando personajes...</p>
+              ) : error ? (
+                <p role="alert">No se pudieron cargar los personajes: {error.message}</p>
+              ) : (
+                <HeroGrid heroes={heroes} />
+              )}
           </TabsContent>
           <TabsContent value='favorites'>
             {/* mostrar todos los Favoritos*/}
@@ -61,11 +70,10 @@ export const HomePage = () => {
           </TabsContent>
           <TabsContent value='heroes'>
             {/*mostrar todos los Heroes*/}
-            <h1>Heroes!!</h1>
+            <HeroGrid heroes={heroes.filter(hero => hero.category.toLowerCase() === 'hero')} />
           </TabsContent>
           <TabsContent value='villains'>
-            {/*mostrar todos los villanos*/}
-            <h1>villanos muajajaja</h1>
+            <HeroGrid heroes={heroes.filter(hero => hero.category.toLowerCase() === 'villain')} />
           </TabsContent>
         </Tabs>
 
