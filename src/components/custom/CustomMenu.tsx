@@ -15,12 +15,17 @@ export const CustomMenu = () => {
         return pathname === path
     }
   return (
-    <NavigationMenu className="justify-start">
-      <NavigationMenuList className="justify-start gap-2">
+    <NavigationMenu className="sticky top-4 z-50 mb-8 w-full max-w-none justify-start">
+      <NavigationMenuList className="w-full justify-start gap-1.5 rounded-2xl border border-white/70 bg-white/70 p-1.5 shadow-lg shadow-slate-900/5 ring-1 ring-slate-900/5 backdrop-blur-xl">
         <NavigationMenuItem>
           <NavigationMenuLink
             render={<Link to="/" />}
-            className={cn(isActive('/') && "bg-slate-200 rounded-md ","p-2 rounded-md" ) }
+            className={cn(
+              isActive('/')
+                ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-md shadow-blue-500/25 hover:from-blue-700 hover:to-purple-700"
+                : "text-slate-600 hover:bg-slate-100/80 hover:text-slate-900",
+              "h-11 rounded-xl px-5 font-semibold transition-all duration-200 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+            )}
             
           >
             Inicio
@@ -30,9 +35,11 @@ export const CustomMenu = () => {
         <NavigationMenuItem>
           <NavigationMenuLink
             render={<Link to="/search" />}
-             className={cn(
-              isActive('/search') && 'bg-slate-200',
-              'p-2 rounded-md'
+            className={cn(
+              isActive('/search')
+                ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-md shadow-blue-500/25 hover:from-blue-700 hover:to-purple-700"
+                : "text-slate-600 hover:bg-slate-100/80 hover:text-slate-900",
+              "h-11 rounded-xl px-5 font-semibold transition-all duration-200 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
             )}
           >
             Buscar

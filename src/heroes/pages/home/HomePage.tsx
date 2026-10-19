@@ -5,9 +5,9 @@ import { HeroGrid } from "@/heroes/components/HeroGrid"
 import {  useMemo } from "react"
 import { CustomPagination } from "@/components/custom/CustomPagination"
 import { CustomBreadCrums } from "@/components/custom/CustomBreadCrums"
-import { useQuery } from "@tanstack/react-query"
-import { getHeroesByPageAction } from "@/heroes/actions/get-heroes-by-page.actions"
 import { useSearchParams } from "react-router"
+import { useHeroSummary } from "@/heroes/hooks/useHeroSummary"
+import { usePaginatedHero } from "@/heroes/hooks/usePaginatedHero"
 
 
 
@@ -28,19 +28,36 @@ export const HomePage = () => {
   // 'all'|'favorites'|'heroes'|'villains'
   // >('all');
 
-
+  const category = selectedTab === 'heroes'
+    ? 'hero'
+    : selectedTab === 'villains'
+      ? 'villain'
+      : 'all';
 
   const {
     data: heroesResponse,
     isPending,
     error,
-  } = useQuery({
-    queryKey: ['heroes',{page,limit}],
-    queryFn: ()=> getHeroesByPageAction(+page, +limit),
-    staleTime: 1000 * 60 * 5, //5 minutos
-  })
+  } =usePaginatedHero(+page,+limit, category);
+  
+  
+  // useQuery({
+  //   queryKey: ['heroes',{page,limit}],
+  //   queryFn: ()=> getHeroesByPageAction(+page, +limit),
+  //   staleTime: 1000 * 60 * 5, //5 minutos
+  // })
+
+  const {data: summary} = useHeroSummary();
+  
 
   const heroes = heroesResponse?.heroes ?? []
+  const heroesContent = isPending ? (
+    <p role="status">Cargando personajes...</p>
+  ) : error ? (
+    <p role="alert">No se pudieron cargar los personajes: {error.message}</p>
+  ) : (
+    <HeroGrid heroes={heroes} />
+  )
 
   return (
     <>
@@ -55,41 +72,47 @@ export const HomePage = () => {
 
         {/* Stats Dashboard */}
         <HeroStats />
-
         {/* Tabs */}
-        <Tabs value={selectedTab} className="mb-8">
+        <Tabs
+          value={selectedTab}
+          className="mb-8"
+          onValueChange={(value) => {
+            const tab = String(value);
+            const nextCategory = tab === 'heroes'
+              ? 'hero'
+              : tab === 'villains'
+                ? 'villain'
+                : 'all';
+
+            setSearchParams((prev) => {
+              prev.set('tab', tab);
+              prev.set('category', nextCategory);
+              prev.set('page', '1');
+              return prev;
+            });
+          }}
+        >
           <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="all" 
-            onClick={()=>setSearchParams((prev)=>{
-              prev.set('tab','all');
-              return prev;
-            })}
-            >All Characters (16)</TabsTrigger>
-            <TabsTrigger value="favorites" className="flex items-center gap-2" onClick={()=>setSearchParams((prev)=>{
-              prev.set('tab','favorites');
-              return prev;
-            })}>
+            <TabsTrigger value="all">
+              All Characters ({summary?.totalHeroes})
+            </TabsTrigger>
+
+            <TabsTrigger value="favorites" className="flex items-center gap-2">
               Favorites (3)
             </TabsTrigger>
-            <TabsTrigger value="heroes" onClick={()=>setSearchParams((prev)=>{
-              prev.set('tab','heroes');
-              return prev;
-            })}>Heroes (12)</TabsTrigger>
-            <TabsTrigger value="villains" onClick={()=>setSearchParams((prev)=>{
-              prev.set('tab','villains');
-              return prev;
-            })}>Villains (2)</TabsTrigger>
+
+            <TabsTrigger value="heroes">
+              Heroes ({summary?.heroCount})
+            </TabsTrigger>
+
+            <TabsTrigger value="villains">
+              Villains ({summary?.villainCount})
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value='all'>
-              {/* Character Grid - mostrar todos los personajes*/}
-              {isPending ? (
-                <p role="status">Cargando personajes...</p>
-              ) : error ? (
-                <p role="alert">No se pudieron cargar los personajes: {error.message}</p>
-              ) : (
-                <HeroGrid heroes={heroes} />
-              )}
+            {/* Character Grid - mostrar todos los personajes*/}
+            {heroesContent}
           </TabsContent>
           <TabsContent value='favorites'>
             {/* mostrar todos los Favoritos*/}
@@ -97,10 +120,10 @@ export const HomePage = () => {
           </TabsContent>
           <TabsContent value='heroes'>
             {/*mostrar todos los Heroes*/}
-            <HeroGrid heroes={heroes.filter(hero => hero.category.toLowerCase() === 'hero')} />
+            {heroesContent}
           </TabsContent>
           <TabsContent value='villains'>
-            <HeroGrid heroes={heroes.filter(hero => hero.category.toLowerCase() === 'villain')} />
+            {heroesContent}
           </TabsContent>
         </Tabs>
 
