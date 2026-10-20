@@ -60,7 +60,7 @@ export const HeroPage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header Banner */}
-      <div className="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 text-white">
+      <div className="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 text-white rounded-2xl">
         <div className="max-w-7xl mx-auto px-6 py-12">
           <div className="flex flex-col md:flex-row items-center gap-8">
             <div className="relative">
@@ -69,7 +69,7 @@ export const HeroPage = () => {
                 alt={superheroData.alias}
                 width={200}
                 height={200}
-                className="rounded-full border-4 border-white/20 shadow-2xl"
+                className="rounded-2xl border-4 border-white/20 shadow-2xl"
               />
               <div className="absolute -top-2 -right-2">
                 <div className="bg-yellow-400 text-black rounded-full p-2">
