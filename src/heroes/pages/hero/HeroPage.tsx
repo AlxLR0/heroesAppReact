@@ -137,25 +137,25 @@ export const HeroPage = () => {
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-6 py-8">
-        <Tabs defaultValue="stats" className="w-full">
-          <TabsList className="grid w-full grid-cols-4 mb-8">
-            <TabsTrigger value="stats" className="flex items-center gap-2">
-              <Gauge className="w-4 h-4" />
-              Estadísticas
-            </TabsTrigger>
-            <TabsTrigger value="powers" className="flex items-center gap-2">
-              <Zap className="w-4 h-4" />
-              Poderes
-            </TabsTrigger>
-            <TabsTrigger value="team" className="flex items-center gap-2">
-              <Users className="w-4 h-4" />
-              Equipo
-            </TabsTrigger>
-            <TabsTrigger value="info" className="flex items-center gap-2">
-              <Award className="w-4 h-4" />
-              Información
-            </TabsTrigger>
-          </TabsList>
+      <Tabs defaultValue="stats" className="w-full">
+            <TabsList className="mb-8 grid !h-auto w-full min-w-0 grid-cols-2 gap-1 sm:grid-cols-4">
+                <TabsTrigger value="stats" className="!h-auto min-h-9 min-w-0 items-center gap-1 whitespace-normal px-1.5 py-2 text-center text-xs leading-tight sm:gap-2 sm:text-sm">
+                  <Gauge className="w-4 h-4" />
+                  Estadísticas
+                </TabsTrigger>
+                <TabsTrigger value="powers" className="!h-auto min-h-9 min-w-0 items-center gap-1 whitespace-normal px-1.5 py-2 text-center text-xs leading-tight sm:gap-2 sm:text-sm">
+                  <Zap className="w-4 h-4" />
+                  Poderes
+                </TabsTrigger>
+                <TabsTrigger value="team" className="!h-auto min-h-9 min-w-0 items-center gap-1 whitespace-normal px-1.5 py-2 text-center text-xs leading-tight sm:gap-2 sm:text-sm">
+                  <Users className="w-4 h-4" />
+                  Equipo
+                </TabsTrigger>
+                <TabsTrigger value="info" className="!h-auto min-h-9 min-w-0 items-center gap-1 whitespace-normal px-1.5 py-2 text-center text-xs leading-tight sm:gap-2 sm:text-sm">
+                  <Award className="w-4 h-4" />
+                  Información
+                </TabsTrigger>
+            </TabsList>
 
           <TabsContent value="stats" className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

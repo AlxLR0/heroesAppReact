@@ -94,22 +94,22 @@ export const HomePage = () => {
             });
           }}
         >
-          <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="all">
-              All Characters ({summary?.totalHeroes})
-            </TabsTrigger>
+          <TabsList className="mb-8 grid !h-auto w-full min-w-0 grid-cols-2 gap-1 sm:grid-cols-4">
+              <TabsTrigger value="all" className="!h-auto min-h-9 min-w-0 whitespace-normal px-1.5 py-2 text-center text-xs leading-tight sm:text-sm">
+                All Characters ({summary?.totalHeroes})
+              </TabsTrigger>
 
-            <TabsTrigger value="favorites" className="flex items-center gap-2">
-              Favorites ({favoriteCount})
-            </TabsTrigger>
+              <TabsTrigger value="favorites" className="!h-auto min-h-9 min-w-0 items-center gap-1 whitespace-normal px-1.5 py-2 text-center text-xs leading-tight sm:gap-2 sm:text-sm">
+                Favorites ({favoriteCount})
+              </TabsTrigger>
 
-            <TabsTrigger value="heroes">
-              Heroes ({summary?.heroCount})
-            </TabsTrigger>
+              <TabsTrigger value="heroes" className="!h-auto min-h-9 min-w-0 whitespace-normal px-1.5 py-2 text-center text-xs leading-tight sm:text-sm">
+                Heroes ({summary?.heroCount})
+              </TabsTrigger>
 
-            <TabsTrigger value="villains">
-              Villains ({summary?.villainCount})
-            </TabsTrigger>
+              <TabsTrigger value="villains" className="!h-auto min-h-9 min-w-0 whitespace-normal px-1.5 py-2 text-center text-xs leading-tight sm:text-sm">
+                Villains ({summary?.villainCount})
+              </TabsTrigger>
           </TabsList>
 
           <TabsContent value='all'>

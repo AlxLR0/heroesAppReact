@@ -24,7 +24,7 @@ export const CustomPagination = ({totalPages}:Props) => {
     }
 
   return (
-        <div className="flex items-center justify-center space-x-2">
+      <div className="flex w-full flex-wrap items-center justify-center gap-2">
           <Button variant="outline" size="sm" disabled={page===1}
             onClick={()=>handlePageChange(page-1)}
           >
@@ -59,6 +59,6 @@ export const CustomPagination = ({totalPages}:Props) => {
             Siguiente
             <ChevronRight className="h-4 w-4" />
           </Button>
-        </div>
+      </div>
   )
 }
