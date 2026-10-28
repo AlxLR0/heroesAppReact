@@ -1,54 +1,71 @@
-# React + TypeScript + Vite
+# 🦸 SuperUniverse
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+### **Exploración de superhéroes y villanos**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Catálogo interactivo de personajes con búsqueda, filtros, favoritos y navegación por páginas.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## **✨ Funciones principales**
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- **Catálogo** de héroes y villanos.
+- **Búsqueda** de personajes por nombre.
+- **Favoritos** para guardar personajes seleccionados.
+- **Paginación** para recorrer el catálogo.
+- **Estadísticas** con un resumen de los personajes.
+- **Detalles** con información de cada personaje.
+
+---
+
+## **🧰 Tecnologías**
+
+- React 19 y TypeScript
+- Vite
+- React Router
+- TanStack Query
+- Tailwind CSS
+- Vitest y React Testing Library
+
+---
+
+## **🚀 Para empezar**
+
+**Requisitos:** Node.js **22.13 o superior** y npm.
+
+**Instalación y ejecución** desde la carpeta del proyecto:
+
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Abrir en el navegador la dirección indicada en la terminal.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## **🧪 Comandos útiles**
+
+| Comando | Descripción |
+| --- | --- |
+| `npm run dev` | Iniciar el modo de desarrollo |
+| `npm run build` | Compilar para producción |
+| `npm run preview` | Previsualizar la compilación |
+| `npm run lint` | Analizar el código con ESLint |
+| `npm run test` | Ejecutar las pruebas |
+
+---
+
+## **📁 Organización**
+
+- `src/heroes/`: páginas, componentes, hooks, acciones y datos de personajes.
+- `src/admin/`: sección de administración.
+- `src/components/`: componentes reutilizables de la interfaz.
+- `src/router/`: rutas de la app.
+
+---
+
+### **💻 React · TypeScript · Pruebas**
+
+---
