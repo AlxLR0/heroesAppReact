@@ -8,6 +8,12 @@ Catálogo interactivo de personajes con búsqueda, filtros, favoritos y navegaci
 
 ---
 
+## **🌐 Prueba la aplicación**
+
+[Abrir SuperUniverse](https://superuniverseapp.netlify.app/)
+
+---
+
 ## **✨ Funciones principales**
 
 - **Catálogo** de héroes y villanos.
