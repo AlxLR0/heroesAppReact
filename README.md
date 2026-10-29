@@ -75,3 +75,5 @@ Abrir en el navegador la dirección indicada en la terminal.
 ### **💻 React · TypeScript · Pruebas**
 
 ---
+
+by AlX
